@@ -36,6 +36,14 @@ const int gpioPin = 4;
 By default the sketch uses GPIO4. This should be safe on most ESP32 boards,
 but if change it, **make sure you pick a GPIO that is not a boot-strapping** one.
 
+Connect one wire within your cable to that GPIO pin and another wire to
+a ground on your board.
+
+Within the reed switch, make sure to connect one wire to the common port
+and another one to the normally-closed port - you should ensure that if
+the wire is getting cut for some reason then it will be treated as the
+door being open, possibly for security reasons.
+
 ## Build using Arduino IDE
 
 Make sure to open the sketch, and then select your board. I used Arduino
