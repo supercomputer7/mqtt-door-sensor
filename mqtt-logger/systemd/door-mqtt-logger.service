@@ -6,8 +6,8 @@ Wants=network-online.target
 [Service]
 Type=simple
 
-# Path to your script (CHANGE THIS)
-ExecStart=/usr/bin/python3 /opt/door-mqtt/door_logger.py \
+# Path to your script (CHANGE THIS WITH YOUR VENV!)
+ExecStart=/usr/bin/python3 /opt/door-mqtt/logger.py \
   --broker 192.168.1.100 \
   --user your_user \
   --password your_password
@@ -18,8 +18,8 @@ Restart=always
 RestartSec=30
 
 # Optional hardening
-User=pi
-Group=pi
+User=mqttlogger
+Group=mqttlogger
 
 # Logs go to journald (in addition to your file logger)
 StandardOutput=journal

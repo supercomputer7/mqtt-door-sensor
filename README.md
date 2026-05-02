@@ -50,6 +50,8 @@ A Python script that:
 
 ### Logger Installation
 
+*It will be assumed you install the script in the `/opt/door-mqtt` directory. Change this otherwise in the systemd service file and commands later on.*
+
 Use a python `venv` as required, and then:
 
 ```bash
@@ -64,6 +66,19 @@ Customize the parameters as required and then:
 ```bash
 .venv/bin/python logger.py --broker MQTT_HOST --user MQTT_USER --password MQTT_PASS --state-topic home/door/state --status-topic home/door/status
 ```
+
+### Hardening
+
+Create a new user and group:
+```sh
+useradd -r -s /usr/sbin/nologin mqttlogger
+```
+
+Then do:
+```sh
+sudo chown -R mqttlogger:mqttlogger /opt/door-mqtt
+```
+
 
 ### Install systemd service
 
