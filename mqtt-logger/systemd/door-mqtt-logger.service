@@ -1,0 +1,32 @@
+[Unit]
+Description=MQTT Door Logger Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+
+# Path to your script (CHANGE THIS)
+ExecStart=/usr/bin/python3 /opt/door-mqtt/door_logger.py \
+  --broker 192.168.1.100 \
+  --user your_user \
+  --password your_password
+
+WorkingDirectory=/opt/door-mqtt
+
+Restart=always
+RestartSec=30
+
+# Optional hardening
+User=pi
+Group=pi
+
+# Logs go to journald (in addition to your file logger)
+StandardOutput=journal
+StandardError=journal
+
+# Clean environment
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
